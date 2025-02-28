@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christ Unity | Social Media for Christ University</title>
+    <style>
+        :root {
+            --primary: #5035FF;
+            --primary-light: #7B66FF;
+            --secondary: #FF3860;
+            --light: #F5F5F5;
+            --dark: #2D2D2D;
+            --gray: #EFEFEF;
+            --text-gray: #777777;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+        }
+
+        .login-container {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+
+        .login-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+.loginlogo{
+  margin-bottom: 0rem; /* Same as the text */
+}
+  .loginlogo img {
+      height: 55px;
+      width: auto; /* Maintain aspect ratio */
+
+}
+        .logo {
+        margin-bottom: 0rem; /* Same as the text */
+    }
+    .logo img {
+        height: 55px; /* Match the font size of the text */
+        width: auto; /* Maintain aspect ratio */
+    }
+
+        .login-card h2 {
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+        }
+
+        .login-form input {
+            width: 100%;
+            padding: 10px 15px;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-bottom: 1rem;
+        }
+
+        .google-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: white;
+            color: var(--dark);
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .google-btn img {
+            width: 20px;
+            margin-right: 10px;
+        }
+
+        .signup-link {
+            margin-top: 1rem;
+            font-size: 14px;
+            color: var(--text-gray);
+        }
+
+        .signup-link a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        /* Main App Styles */
+        .app-container {
+            display: none; /* Hidden initially */
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+        }
+
+        .navbar-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background: var(--gray);
+            border-radius: 20px;
+            padding: 5px 15px;
+            margin: 0 1rem;
+            flex-grow: 1;
+            max-width: 300px;
+        }
+
+        .search-bar input {
+            background: transparent;
+            border: none;
+            padding: 5px;
+            width: 100%;
+            outline: none;
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-icon {
+            font-size: 1.3rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+
+        .nav-profile {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            object-fit: cover;
+            cursor: pointer;
+        }
+
+        .main-content {
+            display: flex;
+            margin-top: 60px;
+            min-height: calc(100vh - 60px);
+        }
+
+        .sidebar {
+            width: 240px;
+            position: fixed;
+            height: calc(100vh - 60px);
+            padding: 2rem 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            border-right: 1px solid var(--gray);
+        }
+
+        .sidebar-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 10px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .sidebar-item:hover {
+            background: var(--gray);
+        }
+
+        .sidebar-item.active {
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .sidebar-icon {
+            font-size: 1.3rem;
+        }
+
+        .content-area {
+            flex-grow: 1;
+            margin-left: 240px;
+            padding: 1.5rem;
+        }
+
+        .feed {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .post {
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .post-header {
+            display: flex;
+            align-items: center;
+            padding: 0.8rem 1rem;
+        }
+
+        .post-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 0.8rem;
+        }
+
+        .post-user {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .post-time {
+            color: var(--text-gray);
+            font-size: 0.8rem;
+            margin-left: 0.5rem;
+        }
+
+        .post-image img {
+            width: 100%;
+            max-height: 600px;
+            object-fit: cover;
+        }
+
+        .post-actions {
+            padding: 0.8rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .post-action {
+            font-size: 1.4rem;
+            cursor: pointer;
+        }
+
+        .post-action.heart {
+            color: var(--secondary);
+        }
+
+        .post-likes {
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 0 1rem;
+        }
+
+        .post-caption {
+            padding: 0 1rem 0.8rem;
+            font-size: 0.9rem;
+        }
+
+        .post-caption a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .post-comments {
+            padding: 0 1rem 0.8rem;
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .post-add-comment {
+            display: flex;
+            align-items: center;
+            padding: 0.8rem 1rem;
+            border-top: 1px solid var(--gray);
+        }
+
+        .post-add-comment input {
+            flex-grow: 1;
+            border: none;
+            outline: none;
+            padding: 5px;
+            font-size: 0.9rem;
+        }
+
+        .post-add-comment button {
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-weight: 600;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        /* Profile Section */
+        .profile-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .profile-pic {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1rem;
+            border: 3px solid var(--primary);
+        }
+
+        .profile-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-username {
+            color: var(--text-gray);
+            margin-bottom: 1rem;
+        }
+
+        .profile-stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-count {
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        .stat-label {
+            color: var(--text-gray);
+            font-size: 0.8rem;
+        }
+
+        .profile-bio {
+            max-width: 400px;
+            margin: 0 auto 1.5rem;
+            color: var(--dark);
+        }
+
+        .profile-action {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .profile-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--gray);
+        }
+
+        .profile-tab {
+            padding: 1rem 2rem;
+            font-weight: 600;
+            color: var(--text-gray);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .profile-tab.active {
+            color: var(--primary);
+        }
+
+        .profile-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--primary);
+        }
+
+        .profile-posts {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .profile-post {
+            width: 100%;
+            padding-bottom: 100%;
+            position: relative;
+            overflow: hidden;
+            border-radius: 5px;
+        }
+
+        .profile-post img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Messages Section */
+        .messages-container {
+            display: flex;
+            height: calc(100vh - 100px);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid var(--gray);
+            background: white;
+        }
+
+        .messages-list {
+            width: 300px;
+            border-right: 1px solid var(--gray);
+            overflow-y: auto;
+        }
+
+        .messages-search {
+            padding: 1rem;
+            border-bottom: 1px solid var(--gray);
+        }
+
+        .messages-search input {
+            width: 100%;
+            padding: 8px 15px;
+            border: 1px solid var(--gray);
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .message-contact {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid var(--gray);
+            cursor: pointer;
+        }
+
+        .message-contact:hover {
+            background: var(--gray);
+        }
+
+        .message-contact.active {
+            background: rgba(80, 53, 255, 0.1);
+        }
+
+        .message-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 1rem;
+        }
+
+        .message-info {
+            flex-grow: 1;
+        }
+
+        .message-name {
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+            font-size: 0.9rem;
+        }
+
+        .message-preview {
+            color: var(--text-gray);
+            font-size: 0.8rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 180px;
+        }
+
+        .message-time {
+            font-size: 0.7rem;
+            color: var(--text-gray);
+        }
+
+        .chat-area {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-header {
+            padding: 1rem;
+            border-bottom: 1px solid var(--gray);
+            display: flex;
+            align-items: center;
+        }
+
+        .chat-messages {
+            flex-grow: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .message {
+            max-width: 70%;
+            padding: 10px 15px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+        }
+
+        .message.received {
+            background: var(--gray);
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+        }
+
+        .message.sent {
+            background: var(--primary);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+
+        .chat-input {
+            padding: 1rem;
+            border-top: 1px solid var(--gray);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .chat-input input {
+            flex-grow: 1;
+            padding: 10px 15px;
+            border: 1px solid var(--gray);
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .chat-input button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        /* Notifications Section */
+        .notifications-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .notification {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .notification-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 1rem;
+        }
+
+        .notification-content {
+            flex-grow: 1;
+        }
+
+        .notification-text {
+            font-size: 0.9rem;
+        }
+
+        .notification-time {
+            color: var(--text-gray);
+            font-size: 0.8rem;
+            margin-top: 0.2rem;
+        }
+
+        .notification-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            cursor: pointer;
+        }
+
+        /* Explore Section */
+        .explore-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .explore-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .explore-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .explore-item {
+            width: 100%;
+            padding-bottom: 100%;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .explore-item img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .explore-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+
+            .content-area {
+                margin-left: 0;
+            }
+
+            .mobile-menu {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                background: white;
+                display: flex;
+                justify-content: space-around;
+                padding: 0.8rem 0;
+                box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+                z-index: 100;
+            }
+
+            .mobile-menu-item {
+                font-size: 1.3rem;
+                color: var(--dark);
+            }
+
+            .mobile-menu-item.active {
+                color: var(--primary);
+            }
+
+            .profile-posts,
+            .explore-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .messages-container {
+                flex-direction: column;
+            }
+
+            .messages-list {
+                width: 100%;
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .profile-posts,
+            .explore-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-tab {
+                padding: 0.8rem 1rem;
+            }
+
+            .search-bar {
+                display: none;
+            }
+        }
+
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+         /* Profile Popup Styles */
+    .profile-popup {
+        position: fixed;
+        top: 60px;
+        right: 20px;
+        width: 300px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        z-index: 200;
+        display: none;
+    }
+
+    .profile-popup-content {
+        padding: 1.5rem;
+    }
+
+    .popup-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+
+    .popup-avatar {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 1rem;
+    }
+
+    .popup-name {
+        font-weight: 600;
+        font-size: 1.1rem;
+        margin-bottom: 0.2rem;
+    }
+
+    .popup-username {
+        color: var(--text-gray);
+        font-size: 0.9rem;
+    }
+
+    .popup-stats {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--gray);
+    }
+
+    .popup-stat {
+        font-size: 0.9rem;
+        color: var(--dark);
+    }
+
+    .popup-stat-count {
+        font-weight: 600;
+    }
+
+    .popup-bio {
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+        line-height: 1.4;
+    }
+
+    .popup-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .popup-btn {
+        width: 100%;
+        padding: 0.6rem;
+        border-radius: 5px;
+        font-weight: 600;
+        cursor: pointer;
+        border: none;
+    }
+
+    .popup-btn:first-child {
+        background-color: var(--primary);
+        color: white;
+    }
+
+    .popup-btn:last-child {
+        background-color: var(--light);
+        color: var(--dark);
+        border: 1px solid var(--gray);
+    }
+    h2 {
+        font-size: 15px; /* Decreased size */
+        font-family: Arial, sans-serif; /* Simple font */
+        font-weight: normal; /* Not bold */
+        color: #333; /* Neutral color */
+        margin: 0; /* Remove default margin */
+        padding: 0; /* Remove default padding */
+    }
+    </style>
+</head>
+<body>
+    <!-- Login Page -->
+    <div class="login-container" id="loginPage">
+        <div class="login-card">
+          <div class="loginlogo">
+            <img src="img/Christ-Unity-2-28-2025.png" alt="">
+        </div>
+          <h2>Log in to your account</h2>
+            <form class="login-form" id="loginForm">
+                <input type="text" placeholder="Username or Email" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit" class="login-btn">Log In</button>
+                <button type="button" class="google-btn">
+                    <img src="img/pngwing.com.png" alt="Google logo">
+                    Continue with Google
+                </button>
+            </form>
+            <div class="signup-link">
+                Don't have an account? <a href="#">Sign up</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main App -->
+    <div class="app-container" id="appContainer">
+        <!-- Navigation Bar -->
+        <nav class="navbar">
+            <div class="navbar-content">
+              <div class="logo">
+                <img src="img/Christ-Unity-2-28-2025.png" alt="">
+            </div>
+                <div class="search-bar">
+                    <i class="fas fa-search nav-icon"></i>
+                    <input type="text" placeholder="Search">
+                </div>
+                <div class="nav-icons">
+                    <i class="fas fa-plus-square nav-icon"></i>
+                    <i class="fas fa-heart nav-icon"></i>
+                    <i class="fas fa-paper-plane nav-icon"></i>
+                    <img src="img/developern.jpg" alt="Profile" class="nav-profile">
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <div class="main-content">
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <div class="sidebar-item active" data-section="home">
+                    <i class="fas fa-home sidebar-icon"></i>
+                    <span>Home</span>
+                </div>
+                <div class="sidebar-item" data-section="profile">
+                    <i class="fas fa-user sidebar-icon"></i>
+                    <span>Profile</span>
+                </div>
+                <div class="sidebar-item" data-section="messages">
+                    <i class="fas fa-comment sidebar-icon"></i>
+                    <span>Messages</span>
+                </div>
+                <div class="sidebar-item" data-section="notifications">
+                    <i class="fas fa-bell sidebar-icon"></i>
+                    <span>Notifications</span>
+                </div>
+                <div class="sidebar-item" data-section="explore">
+                    <i class="fas fa-compass sidebar-icon"></i>
+                    <span>Explore</span>
+                </div>
+            </div>
+
+            <!-- Content Area -->
+            <div class="content-area">
+                <!-- Home Feed Section -->
+                <div class="section active" id="home">
+                    <div class="feed">
+                        <!-- Post 1 -->
+                        <div class="post">
+                            <div class="post-header">
+                                <img src="img/logo.png" alt="User" class="post-avatar">
+                                <div>
+                                    <span class="post-user">notes_zone</span>
+                                    <span class="post-time">2h</span>
+                                </div>
+                            </div>
+                            <div class="post-image">
+                                <img src="img/now_page-0001.jpg" alt="Post image">
+                            </div>
+                            <div class="post-actions">
+                                <i class="fas fa-heart post-action heart"></i>
+                                <i class="fas fa-comment post-action"></i>
+                                <i class="fas fa-paper-plane post-action"></i>
+                            </div>
+                            <div class="post-likes">125 likes</div>
+                            <div class="post-caption">
+                                <span class="post-user">notes_zone</span> ! #ChristUniversity #Finals #StudyTime
+                            </div>
+                            <div class="post-comments">View all 24 comments</div>
+                            <div class="post-add-comment">
+                                <input type="text" placeholder="Add a comment...">
+                                <button>Post</button>
+                            </div>
+                        </div>
+
+                        <!-- Post 2 -->
+                        <div class="post">
+                            <div class="post-header">
+                                <img src="/api/placeholder/40/40" alt="User" class="post-avatar">
+                                <div>
+                                    <span class="post-user">tejas_kas</span>
+                                    <span class="post-time">5h</span>
+                                </div>
+                            </div>
+                            <div class="post-image">
+                                <img src="/api/placeholder/600/400" alt="Post image">
+                            </div>
+                            <div class="post-actions">
+                                <i class="fas fa-heart post-action"></i>
+                                <i class="fas fa-comment post-action"></i>
+                                <i class="fas fa-paper-plane post-action"></i>
+                            </div>
+                            <div class="post-likes">342 likes</div>
+                            <div class="post-caption">
+                                <span class="post-user">campus_events</span> Join us this weekend for the annual cultural fest! #ChristFest #CulturalEvents
+                            </div>
+                            <div class="post-comments">View all 56 comments</div>
+                            <div class="post-add-comment">
+                                <input type="text" placeholder="Add a comment...">
+                                <button>Post</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Profile Section -->
+                <div class="section" id="profile">
+                    <div class="profile-header">
+                        <img src="img/developern.jpg" alt="Profile" class="profile-pic">
+                        <h2 class="profile-name">Tejas Kashyap</h2>
+                        <div class="profile-username">@tejas_2005</div>
+                        <div class="profile-stats">
+                            <div class="stat">
+                                <div class="stat-count">15</div>
+                                <div class="stat-label">Posts</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-count">31M</div>
+                                <div class="stat-label">Followers</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-count">19</div>
+                                <div class="stat-label">Following</div>
+                            </div>
+                        </div>
+                        <div class="profile-bio">
+                            Computer Science Student | Class of 2025 | Christ University | Photography enthusiast
+                        </div>
+                        <button class="profile-action">Edit Profile</button>
+                    </div>
+                    <div class="profile-tabs">
+                        <div class="profile-tab active">Posts</div>
+                        <div class="profile-tab">Saved</div>
+                        <div class="profile-tab">Tagged</div>
+                    </div>
+                    <div class="profile-posts">
+                        <div class="profile-post">
+                            <img src="/api/placeholder/200/200" alt="Post">
+                        </div>
+                        <div class="profile-post">
+                            <img src="/api/placeholder/200/200" alt="Post">
+                        </div>
+                        <div class="profile-post">
+                            <img src="/api/placeholder/200/200" alt="Post">
+                        </div>
+                        <div class="profile-post">
+                            <img src="/api/placeholder/200/200" alt="Post">
+                        </div>
+                        <div class="profile-post">
+                            <img src="/api/placeholder/200/200" alt="Post">
+                        </div>
+                        <div class="profile-post">
+                            <img src="/api/placeholder/200/200" alt="Post">
+                        </div>
+                    </div>
+                </div>
+                <!-- Add this new section for the user profile popup -->
+<div id="profilePopup" class="profile-popup">
+  <div class="profile-popup-content">
+      <div class="popup-header">
+          <img src="img/developern.jpg" alt="Profile" class="popup-avatar">
+          <div class="popup-user-info">
+              <div class="popup-name">Tejas Kashyap</div>
+              <div class="popup-username">@tejas_2005</div>
+          </div>
+      </div>
+      <div class="popup-stats">
+          <div class="popup-stat">
+              <span class="popup-stat-count">15</span> Posts
+          </div>
+          <div class="popup-stat">
+              <span class="popup-stat-count">31 M</span> Followers
+          </div>
+          <div class="popup-stat">
+              <span class="popup-stat-count">19</span> Following
+          </div>
+      </div>
+      <div class="popup-bio">
+          Computer Science Student | Class of 2025 | Christ University | Photography enthusiast
+      </div>
+      <div class="popup-actions">
+          <button class="popup-btn" id="viewProfileBtn">View Profile</button>
+          <button class="popup-btn" id="logoutBtn">Logout</button>
+      </div>
+  </div>
+</div>
+
+                <!-- Messages Section -->
+                <div class="section" id="messages">
+                    <div class="messages-container">
+                        <div class="messages-list">
+                            <div class="messages-search">
+                                <input type="text" placeholder="Search messages">
+                            </div>
+                            <div class="message-contact active">
+                                <img src="/api/placeholder/40/40" alt="Contact" class="message-avatar">
+                                <div class="message-info">
+                                    <div class="message-name">Alex Johnson</div>
+                                    <div class="message-preview">Hey, did you get the notes from today's lecture?</div>
+                                </div>
+                                <div class="message-time">2m</div>
+                            </div>
+                            <div class="message-contact">
+                                <img src="/api/placeholder/40/40" alt="Contact" class="message-avatar">
+                                <div class="message-info">
+                                    <div class="message-name">Sarah Williams</div>
+                                    <div class="message-preview">Let's meet at the library tomorrow</div>
+                                </div>
+                                <div class="message-time">1h</div>
+                            </div>
+                            <div class="message-contact">
+                                <img src="/api/placeholder/40/40" alt="Contact" class="message-avatar">
+                                <div class="message-info">
+                                    <div class="message-name">CS Study Group</div>
+                                    <div class="message-preview">Meeting at 4pm in Room 301</div>
+                                </div>
+                                <div class="message-time">3h</div>
+                            </div>
+                        </div>
+                        <div class="chat-area">
+                            <div class="chat-header">
+                                <img src="/api/placeholder/40/40" alt="Contact" class="message-avatar">
+                                <div class="message-name">Alex Johnson</div>
+                            </div>
+                            <div class="chat-messages">
+                                <div class="message received">
+                                    Hey, did you get the notes from today's lecture?
+                                </div>
+                                <div class="message sent">
+                                    Yes, I'll send them to you!
+                                </div>
+                                <div class="message received">
+                                    Thanks! I missed the part about the assignment due dates.
+                                </div>
+                                <div class="message sent">
+                                    No problem. The project is due next Friday and the quiz is on Wednesday.
+                                </div>
+                                <div class="message received">
+                                    Perfect, thank you so much!
+                                </div>
+                            </div>
+                            <div class="chat-input">
+                                <input type="text" placeholder="Type a message...">
+                                <button><i class="fas fa-paper-plane"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Notifications Section -->
+                <div class="section" id="notifications">
+                    <div class="notifications-container">
+                        <div class="notification">
+                            <img src="/api/placeholder/40/40" alt="User" class="notification-avatar">
+                            <div class="notification-content">
+                                <div class="notification-text"><strong>michael_p</strong> liked your photo</div>
+                                <div class="notification-time">2m ago</div>
+                            </div>
+                            <img src="/api/placeholder/40/40" alt="Post thumbnail">
+                        </div>
+                        <div class="notification">
+                            <img src="/api/placeholder/40/40" alt="User" class="notification-avatar">
+                            <div class="notification-content">
+                                <div class="notification-text"><strong>tech_club</strong> mentioned you in a comment</div>
+                                <div class="notification-time">45m ago</div>
+                            </div>
+                        </div>
+                        <div class="notification">
+                            <img src="/api/placeholder/40/40" alt="User" class="notification-avatar">
+                            <div class="notification-content">
+                              <div class="notification-text"><strong>tech_club</strong> mentioned you in a comment</div>
+                              <div class="notification-time">45m ago</div>
+                          </div>
+                          <img src="/api/placeholder/40/40" alt="Comment thumbnail">
+                      </div>
+                      <div class="notification">
+                          <img src="/api/placeholder/40/40" alt="User" class="notification-avatar">
+                          <div class="notification-content">
+                              <div class="notification-text"><strong>campus_events</strong> is going live: "Annual Cultural Fest Preparations"</div>
+                              <div class="notification-time">1h ago</div>
+                          </div>
+                          <button class="notification-btn">Watch</button>
+                      </div>
+                      <div class="notification">
+                          <img src="/api/placeholder/40/40" alt="User" class="notification-avatar">
+                          <div class="notification-content">
+                              <div class="notification-text"><strong>sarah_k</strong> started following you</div>
+                              <div class="notification-time">3h ago</div>
+                          </div>
+                          <button class="notification-btn">Follow</button>
+                      </div>
+                      <div class="notification">
+                          <img src="/api/placeholder/40/40" alt="User" class="notification-avatar">
+                          <div class="notification-content">
+                              <div class="notification-text"><strong>library_official</strong> posted: "Extended hours during finals week"</div>
+                              <div class="notification-time">5h ago</div>
+                          </div>
+                          <img src="/api/placeholder/40/40" alt="Post thumbnail">
+                      </div>
+                  </div>
+              </div>
+
+              <!-- Explore Section -->
+              <div class="section" id="explore">
+                  <div class="explore-container">
+                      <div class="explore-header">
+                          <h2>Discover</h2>
+                      </div>
+                      <div class="explore-grid">
+                          <div class="explore-item">
+                              <img src="/api/placeholder/300/300" alt="Explore">
+                          </div>
+                          <div class="explore-item">
+                              <img src="/api/placeholder/300/300" alt="Explore">
+                          </div>
+                          <div class="explore-item">
+                              <img src="/api/placeholder/300/300" alt="Explore">
+                          </div>
+                          <div class="explore-item">
+                              <img src="/api/placeholder/300/300" alt="Explore">
+                          </div>
+                          <div class="explore-item">
+                              <img src="/api/placeholder/300/300" alt="Explore">
+                          </div>
+                          <div class="explore-item">
+                              <img src="/api/placeholder/300/300" alt="Explore">
+                          </div>
+                          <div class="explore-item">
+                              <img src="/api/placeholder/300/300" alt="Explore">
+                          </div>
+                          <div class="explore-item">
+                              <img src="/api/placeholder/300/300" alt="Explore">
+                          </div>
+                          <div class="explore-item">
+                              <img src="/api/placeholder/300/300" alt="Explore">
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <!-- Mobile Menu (visible on small screens) -->
+      <div class="mobile-menu" id="mobileMenu">
+          <i class="fas fa-home mobile-menu-item" data-section="home"></i>
+          <i class="fas fa-user mobile-menu-item" data-section="profile"></i>
+          <i class="fas fa-comment mobile-menu-item" data-section="messages"></i>
+          <i class="fas fa-bell mobile-menu-item" data-section="notifications"></i>
+          <i class="fas fa-compass mobile-menu-item" data-section="explore"></i>
+      </div>
+  </div>
+
+  <!-- FontAwesome for icons -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+  
+  <!-- Main JavaScript -->
+  <script>
+      // Simulating login functionality
+      document.getElementById('loginForm').addEventListener('submit', function(e) {
+          e.preventDefault();
+          document.getElementById('loginPage').style.display = 'none';
+          document.getElementById('appContainer').style.display = 'block';
+      });
+
+      // Navigation functionality
+      const sidebarItems = document.querySelectorAll('.sidebar-item');
+      const sections = document.querySelectorAll('.section');
+
+      sidebarItems.forEach(item => {
+          item.addEventListener('click', function() {
+              const sectionId = this.getAttribute('data-section');
+              
+              // Update sidebar active state
+              sidebarItems.forEach(i => i.classList.remove('active'));
+              this.classList.add('active');
+              
+              // Update mobile menu active state
+              const mobileItems = document.querySelectorAll('.mobile-menu-item');
+              mobileItems.forEach((m, index) => {
+                  m.classList.remove('active');
+                  if (index === Array.from(sidebarItems).indexOf(this)) {
+                      m.classList.add('active');
+                  }
+              });
+              
+              // Show the corresponding section
+              sections.forEach(s => s.classList.remove('active'));
+              document.getElementById(sectionId).classList.add('active');
+          });
+      });
+
+      // Mobile menu functionality
+      const mobileMenu = document.getElementById('mobileMenu');
+      mobileMenu.addEventListener('click', function(event) {
+          const clickedItem = event.target.closest('.mobile-menu-item');
+          if (clickedItem) {
+              // Update mobile menu active state
+              const mobileItems = document.querySelectorAll('.mobile-menu-item');
+              mobileItems.forEach(m => m.classList.remove('active'));
+              clickedItem.classList.add('active');
+
+              // Update sidebar active state
+              const index = Array.from(mobileItems).indexOf(clickedItem);
+              sidebarItems.forEach(i => i.classList.remove('active'));
+              sidebarItems[index].classList.add('active');
+
+              // Show the corresponding section
+              const sectionId = sidebarItems[index].getAttribute('data-section');
+              sections.forEach(s => s.classList.remove('active'));
+              document.getElementById(sectionId).classList.add('active');
+          }
+      });
+
+      // Profile tabs functionality
+      const profileTabs = document.querySelectorAll('.profile-tab');
+      
+      profileTabs.forEach(tab => {
+          tab.addEventListener('click', function() {
+              profileTabs.forEach(t => t.classList.remove('active'));
+              this.classList.add('active');
+              // In a real app, we would show different content based on the selected tab
+          });
+      });
+          // Profile popup functionality
+    const profilePic = document.querySelector('.nav-profile');
+    const profilePopup = document.getElementById('profilePopup');
+    const viewProfileBtn = document.getElementById('viewProfileBtn');
+    const logoutBtn = document.getElementById('logoutBtn');
+    
+    // Toggle profile popup when clicking on profile picture
+    profilePic.addEventListener('click', function(e) {
+        e.stopPropagation();
+        profilePopup.style.display = profilePopup.style.display === 'block' ? 'none' : 'block';
+    });
+    
+    // Close popup when clicking elsewhere on the page
+    document.addEventListener('click', function(e) {
+        if (profilePopup.style.display === 'block' && !profilePopup.contains(e.target)) {
+            profilePopup.style.display = 'none';
+        }
+    });
+    
+    // View profile button functionality
+    viewProfileBtn.addEventListener('click', function() {
+        // Navigate to profile section
+        sidebarItems.forEach(i => i.classList.remove('active'));
+        document.querySelector('[data-section="profile"]').classList.add('active');
+        
+        // Show profile section
+        sections.forEach(s => s.classList.remove('active'));
+        document.getElementById('profile').classList.add('active');
+        
+        // Close popup
+        profilePopup.style.display = 'none';
+    });
+    
+    // Logout button functionality
+    logoutBtn.addEventListener('click', function() {
+        // Return to login page
+        document.getElementById('appContainer').style.display = 'none';
+        document.getElementById('loginPage').style.display = 'flex';
+        profilePopup.style.display = 'none';
+    });
+  </script>
+</body>
+</html>
