@@ -919,91 +919,438 @@
                 </div>
             </div>
 
+           /* Modal (Lightbox) Styling */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal-content {
+        max-width: 90%;
+        max-height: 90%;
+        display: block;
+        margin: auto;
+        border-radius: 10px;
+    }
+
+    .close {
+        position: absolute;
+        top: 15px;
+        right: 25px;
+        color: white;
+        font-size: 35px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .close:hover {
+        color: #ccc;
+    }
+    .post-media {
+        position: relative;
+        width: 100%;
+        height: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: black;
+        cursor: pointer;
+    }
+
+    .post-video {
+        width: 100%;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+
+    /* Play/Pause Button */
+    .play-pause {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 24px;
+        background: rgba(255, 255, 255, 0.4); /* Transparent white */
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: opacity 0.3s ease-in-out;
+    }
+
+    .play-pause i {
+        font-size: 28px;
+    }
+
+    /* Mute Button */
+    .mute-button {
+        position: absolute;
+        bottom: 15px;
+        right: 15px;
+        background: rgba(255, 255, 255, 0.4);
+        color: white;
+        border: none;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        font-size: 18px;
+        cursor: pointer;
+    }
+
+    /* Auto-hide play button */
+    .hidden {
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    }
+    </style>
+</head>
+<body>
+    <!-- Login Page -->
+    <div class="login-container" id="loginPage">
+        <div class="login-card">
+          <div class="loginlogo">
+            <img src="Christ-Unity-2-28-2025.png" alt="">
+        </div>
+          <h2>Log in to your account</h2>
+            <form class="login-form" id="loginForm">
+                <input type="text" placeholder="Username or Email" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit" class="login-btn">Log In</button>
+                <button type="button" class="google-btn">
+                    <img src="pngwing.com.png" alt="Google logo">
+                    Continue with Google
+                </button>
+            </form>
+            <div class="signup-link">
+                Don't have an account? <a href="#">Sign up</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main App -->
+    <div class="app-container" id="appContainer">
+        <!-- Navigation Bar -->
+        <nav class="navbar">
+            <div class="navbar-content">
+              <div class="logo">
+                <img src="Christ-Unity-2-28-2025.png" alt="">
+            </div>
+                <div class="search-bar">
+                    <i class="fas fa-search nav-icon"></i>
+                    <input type="text" placeholder="Search">
+                </div>
+                <div class="nav-icons">
+                    <i class="fas fa-plus-square nav-icon"></i>
+                    <i class="fas fa-heart nav-icon"></i>
+                    <i class="fas fa-paper-plane nav-icon"></i>
+                    <img src="Tejas 1.jpg" alt="Profile" class="nav-profile">
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <div class="main-content">
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <div class="sidebar-item active" data-section="home">
+                    <i class="fas fa-home sidebar-icon"></i>
+                    <span>Home</span>
+                </div>
+                <div class="sidebar-item" data-section="profile">
+                    <i class="fas fa-user sidebar-icon"></i>
+                    <span>Profile</span>
+                </div>
+                <div class="sidebar-item" data-section="messages">
+                    <i class="fas fa-comment sidebar-icon"></i>
+                    <span>Messages</span>
+                </div>
+                <div class="sidebar-item" data-section="notifications">
+                    <i class="fas fa-bell sidebar-icon"></i>
+                    <span>Notifications</span>
+                </div>
+                <div class="sidebar-item" data-section="explore">
+                    <i class="fas fa-compass sidebar-icon"></i>
+                    <span>Explore</span>
+                </div>
+            </div>
+
             <!-- Content Area -->
             <div class="content-area">
                 <!-- Home Feed Section -->
                 <div class="section active" id="home">
                     <div class="feed">
-                        <!-- Post 1 -->
-                        <div class="post">
-                            <div class="post-header">
-                                <img src="logo.png" alt="User" class="post-avatar">
-                                <div>
-                                    <span class="post-user">notes_zone</span>
-                                    <span class="post-time">2h</span>
-                                </div>
-                            </div>
-                            <div class="post-image">
-                                <img src="post 1.jpg" alt="Post image">
-                            </div>
-                            <div class="post-actions">
-                                <i class="fas fa-heart post-action heart"></i>
-                                <i class="fas fa-comment post-action"></i>
-                                <i class="fas fa-paper-plane post-action"></i>
-                            </div>
-                            <div class="post-likes">125 likes</div>
-                            <div class="post-caption">
-                                <span class="post-user">notes_zone</span> Your Daily Class are ready for you! #ChristUniversity #Finals #StudyTime
-                            </div>
-                            <div class="post-comments">View all 24 comments</div>
-                            <div class="post-add-comment">
-                                <input type="text" placeholder="Add a comment...">
-                                <button>Post</button>
-                            </div>
-                        </div>
+                      
+                      
+                      <!-- Video Post (Instagram-Style) -->
+<div class="post">
+    <div class="post-header">
+        <img src="channels4_profile.jpg" alt="User" class="post-avatar">
+        <div>
+            <span class="post-user">fictic_editz</span>
+            <span class="post-time">3h</span>
+        </div>
+    </div>
 
-                        <!-- Post 2 -->
-                        <div class="post">
-                            <div class="post-header">
-                                <img src="developern.jpg" alt="User" class="post-avatar">
-                                <div>
-                                    <span class="post-user">tejas_2005</span>
-                                    <span class="post-time">5h</span>
-                                </div>
-                            </div>
-                            <div class="post-image">
-                                <img src="post2.jpg" alt="Post image">
-                            </div>
-                            <div class="post-actions">
-                                <i class="fas fa-heart post-action"></i>
-                                <i class="fas fa-comment post-action"></i>
-                                <i class="fas fa-paper-plane post-action"></i>
-                            </div>
-                            <div class="post-likes">342 likes</div>
-                            <div class="post-caption">
-                                <span class="post-user">tejas_2005</span> Notes Zone New Office in Banglore!🔥 #NotesZone #Office
-                            </div>
-                            <div class="post-comments">View all 56 comments</div>
-                            <div class="post-add-comment">
-                                <input type="text" placeholder="Add a comment...">
-                                <button>Post</button>
-                            </div>
-                        </div>
+    <!-- Video Container -->
+    <div class="post-media" onclick="togglePlayPause(this)">
+        <video class="post-video" autoplay loop muted>
+            <source src="video post 1.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+
+        <!-- Play/Pause Button (Transparent White) -->
+        <button class="play-pause">
+            <i class="fas fa-play"></i>
+        </button>
+
+        <!-- Mute/Unmute Button -->
+        <button class="mute-button" onclick="toggleMute(event)">
+            <i class="fas fa-volume-mute"></i>
+        </button>
+    </div>
+
+    <div class="post-actions">
+        <i class="fas fa-heart post-action heart"></i>
+        <i class="fas fa-comment post-action"></i>
+        <i class="fas fa-paper-plane post-action"></i>
+    </div>
+
+    <div class="post-likes">100K likes</div>
+    <div class="post-caption">
+        <span class="post-user">fictic_editz</span> When You're Just a BABY" - Andrew x Bully Maguire Edit 🕷️🕸️ #SpiderMan #AndrewGarfield #TobeyMaguire
+    </div>
+    <div class="post-comments">View all 2.7K comments</div>
+    <div class="post-add-comment">
+        <input type="text" placeholder="Add a comment...">
+        <button>Post</button>
+    </div>
+</div>
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                        <!-- Post 1 -->
+<div class="post">
+    <div class="post-header">
+        <img src="Christ University.jpeg" alt="User" class="post-avatar">
+        <div>
+            <span class="post-user">christ_university</span>
+            <span class="post-time">2h</span>
+        </div>
+    </div>
+
+    <!-- Clickable Image -->
+    <div class="post-image">
+        <img src="WhatsApp Image 2025-03-01 at 18.00.01_ded902f9.jpg" alt="Post image" onclick="openModal(this)">
+    </div>
+
+    <div class="post-actions">
+        <i class="fas fa-heart post-action heart"></i>
+        <i class="fas fa-comment post-action"></i>
+        <i class="fas fa-paper-plane post-action"></i>
+    </div>
+
+    <div class="post-likes">125 likes</div>
+    <div class="post-caption">
+        <span class="post-user">christ_university</span> Blossom 2025 Champions! 🌸🔥 #Blossom2025 #ScienceReigns #Champions
+    </div>
+    <div class="post-comments">View all 24 comments</div>
+    <div class="post-add-comment">
+        <input type="text" placeholder="Add a comment...">
+        <button>Post</button>
+    </div>
+</div>
+
+<!-- Image View Modal -->
+<div id="imageModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="modalImage">
+</div>
+  <!-- Post 2 -->
+  <div class="post">
+    <div class="post-header">
+        <img src="Tejas 1.jpg" alt="User" class="post-avatar">
+        <div>
+            <span class="post-user">tejas_2005</span>
+            <span class="post-time">2h</span>
+        </div>
+    </div>
+
+    <!-- Clickable Image -->
+    <div class="post-image">
+        <img src="post 2.jpg" alt="Post image" onclick="openModal(this)">
+    </div>
+
+    <div class="post-actions">
+        <i class="fas fa-heart post-action heart"></i>
+        <i class="fas fa-comment post-action"></i>
+        <i class="fas fa-paper-plane post-action"></i>
+    </div>
+
+    <div class="post-likes">1K likes</div>
+    <div class="post-caption">
+        <span class="post-user">tejas_2005</span>  Lost in the beauty of the Mughal Gardens – where nature meets royalty! #RashtrapatiBhavan
+    </div>
+    <div class="post-comments">View all 278 comments</div>
+    <div class="post-add-comment">
+        <input type="text" placeholder="Add a comment...">
+        <button>Post</button>
+    </div>
+</div>
+
+<!-- Image View Modal -->
+<div id="imageModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="modalImage">
+</div>
+
+<!-- Post 3 -->
+<div class="post">
+    <div class="post-header">
+        <img src="logo.png" alt="User" class="post-avatar">
+        <div>
+            <span class="post-user">notes_zone</span>
+            <span class="post-time">2d</span>
+        </div>
+    </div>
+
+    <!-- Clickable Image -->
+    <div class="post-image">
+        <img src="post2.jpg" alt="Post image" onclick="openModal(this)">
+    </div>
+
+    <div class="post-actions">
+        <i class="fas fa-heart post-action heart"></i>
+        <i class="fas fa-comment post-action"></i>
+        <i class="fas fa-paper-plane post-action"></i>
+    </div>
+
+    <div class="post-likes">150K likes</div>
+    <div class="post-caption">
+        <span class="post-user">notes_zone</span>  New Office in Banglore! 🚀 #NotesZone #Banglore #Office
+    </div>
+    <div class="post-comments">View all 2.7K comments</div>
+    <div class="post-add-comment">
+        <input type="text" placeholder="Add a comment...">
+        <button>Post</button>
+    </div>
+</div>
+
+<!-- Image View Modal -->
+<div id="imageModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="modalImage">
+</div>
+
+
+                        
                     </div>
                 </div>
 
                 <!-- Profile Section -->
                 <div class="section" id="profile">
                     <div class="profile-header">
-                        <img src="developern.jpg" alt="Profile" class="profile-pic">
+                        <img src="Tejas 1.jpg" alt="Profile" class="profile-pic">
                         <h2 class="profile-name">Tejas Kashyap</h2>
                         <div class="profile-username">@tejas_2005</div>
                         <div class="profile-stats">
                             <div class="stat">
-                                <div class="stat-count">15</div>
+                                <div class="stat-count">7</div>
                                 <div class="stat-label">Posts</div>
                             </div>
                             <div class="stat">
-                                <div class="stat-count">31M</div>
+                                <div class="stat-count">100M</div>
                                 <div class="stat-label">Followers</div>
                             </div>
                             <div class="stat">
-                                <div class="stat-count">19</div>
+                                <div class="stat-count">1</div>
                                 <div class="stat-label">Following</div>
                             </div>
                         </div>
                         <div class="profile-bio">
-                            Computer Science Student | Class of 2025 | Christ University | Photography enthusiast
+                            Developer@Notes zone | Entrepreneur | Christ University | AI enthusiast
                         </div>
                         <button class="profile-action">Edit Profile</button>
                     </div>
@@ -1233,113 +1580,153 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
   
  <!-- Main JavaScript -->
- <script>
-    // Simulating login functionality
-    document.getElementById('loginForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        document.getElementById('loginPage').style.display = 'none';
-        document.getElementById('appContainer').style.display = 'block';
+  <script>
+      // Simulating login functionality
+      document.getElementById('loginForm').addEventListener('submit', function(e) {
+          e.preventDefault();
+          document.getElementById('loginPage').style.display = 'none';
+          document.getElementById('appContainer').style.display = 'block';
+      });
+
+      // Navigation functionality
+      const sidebarItems = document.querySelectorAll('.sidebar-item');
+      const sections = document.querySelectorAll('.section');
+
+      sidebarItems.forEach(item => {
+          item.addEventListener('click', function() {
+              const sectionId = this.getAttribute('data-section');
+              
+              // Update sidebar active state
+              sidebarItems.forEach(i => i.classList.remove('active'));
+              this.classList.add('active');
+              
+              // Update mobile menu active state
+              const mobileItems = document.querySelectorAll('.mobile-menu-item');
+              mobileItems.forEach((m, index) => {
+                  m.classList.remove('active');
+                  if (index === Array.from(sidebarItems).indexOf(this)) {
+                      m.classList.add('active');
+                  }
+              });
+              
+              // Show the corresponding section
+              sections.forEach(s => s.classList.remove('active'));
+              document.getElementById(sectionId).classList.add('active');
+          });
+      });
+
+      // Mobile menu functionality
+      const mobileMenu = document.getElementById('mobileMenu');
+      mobileMenu.addEventListener('click', function(event) {
+          const clickedItem = event.target.closest('.mobile-menu-item');
+          if (clickedItem) {
+              // Update mobile menu active state
+              const mobileItems = document.querySelectorAll('.mobile-menu-item');
+              mobileItems.forEach(m => m.classList.remove('active'));
+              clickedItem.classList.add('active');
+
+              // Update sidebar active state
+              const index = Array.from(mobileItems).indexOf(clickedItem);
+              sidebarItems.forEach(i => i.classList.remove('active'));
+              sidebarItems[index].classList.add('active');
+
+              // Show the corresponding section
+              const sectionId = sidebarItems[index].getAttribute('data-section');
+              sections.forEach(s => s.classList.remove('active'));
+              document.getElementById(sectionId).classList.add('active');
+          }
+      });
+
+      // Profile tabs functionality
+      const profileTabs = document.querySelectorAll('.profile-tab');
+      
+      profileTabs.forEach(tab => {
+          tab.addEventListener('click', function() {
+              profileTabs.forEach(t => t.classList.remove('active'));
+              this.classList.add('active');
+              // In a real app, we would show different content based on the selected tab
+          });
+      });
+          // Profile popup functionality
+    const profilePic = document.querySelector('.nav-profile');
+    const profilePopup = document.getElementById('profilePopup');
+    const viewProfileBtn = document.getElementById('viewProfileBtn');
+    const logoutBtn = document.getElementById('logoutBtn');
+    
+    // Toggle profile popup when clicking on profile picture
+    profilePic.addEventListener('click', function(e) {
+        e.stopPropagation();
+        profilePopup.style.display = profilePopup.style.display === 'block' ? 'none' : 'block';
     });
-
-    // Navigation functionality
-    const sidebarItems = document.querySelectorAll('.sidebar-item');
-    const sections = document.querySelectorAll('.section');
-
-    sidebarItems.forEach(item => {
-        item.addEventListener('click', function() {
-            const sectionId = this.getAttribute('data-section');
-            
-            // Update sidebar active state
-            sidebarItems.forEach(i => i.classList.remove('active'));
-            this.classList.add('active');
-            
-            // Update mobile menu active state
-            const mobileItems = document.querySelectorAll('.mobile-menu-item');
-            mobileItems.forEach((m, index) => {
-                m.classList.remove('active');
-                if (index === Array.from(sidebarItems).indexOf(this)) {
-                    m.classList.add('active');
-                }
-            });
-            
-            // Show the corresponding section
-            sections.forEach(s => s.classList.remove('active'));
-            document.getElementById(sectionId).classList.add('active');
-        });
-    });
-
-    // Mobile menu functionality
-    const mobileMenu = document.getElementById('mobileMenu');
-    mobileMenu.addEventListener('click', function(event) {
-        const clickedItem = event.target.closest('.mobile-menu-item');
-        if (clickedItem) {
-            // Update mobile menu active state
-            const mobileItems = document.querySelectorAll('.mobile-menu-item');
-            mobileItems.forEach(m => m.classList.remove('active'));
-            clickedItem.classList.add('active');
-
-            // Update sidebar active state
-            const index = Array.from(mobileItems).indexOf(clickedItem);
-            sidebarItems.forEach(i => i.classList.remove('active'));
-            sidebarItems[index].classList.add('active');
-
-            // Show the corresponding section
-            const sectionId = sidebarItems[index].getAttribute('data-section');
-            sections.forEach(s => s.classList.remove('active'));
-            document.getElementById(sectionId).classList.add('active');
+    
+    // Close popup when clicking elsewhere on the page
+    document.addEventListener('click', function(e) {
+        if (profilePopup.style.display === 'block' && !profilePopup.contains(e.target)) {
+            profilePopup.style.display = 'none';
         }
     });
-
-    // Profile tabs functionality
-    const profileTabs = document.querySelectorAll('.profile-tab');
     
-    profileTabs.forEach(tab => {
-        tab.addEventListener('click', function() {
-            profileTabs.forEach(t => t.classList.remove('active'));
-            this.classList.add('active');
-            // In a real app, we would show different content based on the selected tab
-        });
+    // View profile button functionality
+    viewProfileBtn.addEventListener('click', function() {
+        // Navigate to profile section
+        sidebarItems.forEach(i => i.classList.remove('active'));
+        document.querySelector('[data-section="profile"]').classList.add('active');
+        
+        // Show profile section
+        sections.forEach(s => s.classList.remove('active'));
+        document.getElementById('profile').classList.add('active');
+        
+        // Close popup
+        profilePopup.style.display = 'none';
     });
-        // Profile popup functionality
-  const profilePic = document.querySelector('.nav-profile');
-  const profilePopup = document.getElementById('profilePopup');
-  const viewProfileBtn = document.getElementById('viewProfileBtn');
-  const logoutBtn = document.getElementById('logoutBtn');
-  
-  // Toggle profile popup when clicking on profile picture
-  profilePic.addEventListener('click', function(e) {
-      e.stopPropagation();
-      profilePopup.style.display = profilePopup.style.display === 'block' ? 'none' : 'block';
-  });
-  
-  // Close popup when clicking elsewhere on the page
-  document.addEventListener('click', function(e) {
-      if (profilePopup.style.display === 'block' && !profilePopup.contains(e.target)) {
-          profilePopup.style.display = 'none';
-      }
-  });
-  
-  // View profile button functionality
-  viewProfileBtn.addEventListener('click', function() {
-      // Navigate to profile section
-      sidebarItems.forEach(i => i.classList.remove('active'));
-      document.querySelector('[data-section="profile"]').classList.add('active');
-      
-      // Show profile section
-      sections.forEach(s => s.classList.remove('active'));
-      document.getElementById('profile').classList.add('active');
-      
-      // Close popup
-      profilePopup.style.display = 'none';
-  });
-  
-  // Logout button functionality
-  logoutBtn.addEventListener('click', function() {
-      // Return to login page
-      document.getElementById('appContainer').style.display = 'none';
-      document.getElementById('loginPage').style.display = 'flex';
-      profilePopup.style.display = 'none';
-  });
-</script>
+    
+    // Logout button functionality
+    logoutBtn.addEventListener('click', function() {
+        // Return to login page
+        document.getElementById('appContainer').style.display = 'none';
+        document.getElementById('loginPage').style.display = 'flex';
+        profilePopup.style.display = 'none';
+    });
+    function openModal(img) {
+        document.getElementById("imageModal").style.display = "flex";
+        document.getElementById("modalImage").src = img.src;
+    }
+
+    function closeModal() {
+        document.getElementById("imageModal").style.display = "none";
+    }
+    function togglePlayPause(mediaContainer) {
+        const video = mediaContainer.querySelector('.post-video');
+        const playButton = mediaContainer.querySelector('.play-pause');
+
+        if (video.paused) {
+            video.play();
+            playButton.classList.add('hidden');
+        } else {
+            video.pause();
+            playButton.classList.remove('hidden');
+            playButton.innerHTML = '<i class="fas fa-play"></i>';
+        }
+
+        // Change icon based on video state
+        playButton.innerHTML = video.paused ? '<i class="fas fa-play"></i>' : '<i class="fas fa-pause"></i>';
+
+        // Auto-hide the play button after 1 second
+        setTimeout(() => {
+            if (!video.paused) {
+                playButton.classList.add('hidden');
+            }
+        }, 1000);
+    }
+
+    function toggleMute(event) {
+        event.stopPropagation(); // Prevent play/pause on click
+        const video = event.target.closest('.post-media').querySelector('.post-video');
+        const muteButton = event.target.closest('.mute-button');
+
+        video.muted = !video.muted;
+        muteButton.innerHTML = video.muted ? '<i class="fas fa-volume-mute"></i>' : '<i class="fas fa-volume-up"></i>';
+    }
+  </script>
 </body>
 </html>
